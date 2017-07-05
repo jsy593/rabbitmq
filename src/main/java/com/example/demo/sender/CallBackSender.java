@@ -15,14 +15,12 @@ public class CallBackSender implements  RabbitTemplate.ConfirmCallback{
         
         rabbitTemplatenew.setConfirmCallback(this);
         String msg="callbackSender : i am callback sender";
-        System.out.println(msg );
         CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());  
         System.out.println("callbackSender UUID: " + correlationData.getId());  
-        this.rabbitTemplatenew.convertAndSend("exchange", "topic.messages", msg, correlationData);  
+        this.rabbitTemplatenew.convertAndSend("topic.message", "topic.A", msg, correlationData);  
     }
 
     public void confirm(CorrelationData correlationData, boolean ack, String cause) {
-        // TODO Auto-generated method stub
-        System.out.println("callbakck confirm: " + correlationData.getId());
+        System.out.println("callbakck confirm: " + correlationData.getId()+  "   ack:"+ack +"  cause:"+cause);
     }
 }

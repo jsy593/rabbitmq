@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.sender.CallBackSender;
 import com.example.demo.sender.HelloSender1;
 import com.example.demo.sender.TopicSender;
 
@@ -16,6 +17,8 @@ public class RabbitController {
     private HelloSender1 helloSender1;
     @Autowired
     private HelloSender1 helloSender2;
+    @Autowired
+    private CallBackSender callBackSender;
     
     @GetMapping("/hello")
     public void hello() {
@@ -28,5 +31,10 @@ public class RabbitController {
     @GetMapping("/topicTest")
     public void topicTest() {
            topicSender.send();
+    }
+    
+    @GetMapping("/callback")
+    public void callback() {
+        callBackSender.send();
     }
 }
