@@ -25,8 +25,8 @@ public class RabbitController {
         helloSender1.send();
     }
     
-	@Autowired
-	private TopicSender topicSender;
+    @Autowired
+    private TopicSender topicSender;
 	
     @GetMapping("/topicTest")
     public void topicTest() {
